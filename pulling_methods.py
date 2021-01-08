@@ -71,8 +71,6 @@ class maker:
             for inserter in range(0,limit):
                 self.put_data(dati[inserter], province_name, type_obekt[inserter], investor[inserter], linkove[inserter])
                 #print('inserted')
-            #for loop to put data in DATABASE
-            #maybe only try first 10???????????????
 
 
         elif province == "plovdiv":
@@ -96,9 +94,6 @@ class maker:
                 ss = temp_one.split('/')
                 if not(len(ss) < 2):
                     dati.append(ss[1])
-                    #print(ss[1])
-                #    dati.append(ss[1])
-            #        print(ss[1])
             #now get the second column
             split_two = dat.find_all(class_='su-post-excerpt')
             for tag_two in split_two:
@@ -164,18 +159,6 @@ class maker:
             type_obekt = []
             investor = []
             linkove = []
-            #ro = requests.get(url_page)
-            #print(ro)
-            #df_list = pd.read_html(url_page)
-            #print(df_list)
-            #df = df_list[0]
-            #df.head()
-
-            #dat = self.get_page(url_page)
-
-            #dat = requests.get(url_page)
-            #soupp = BeautifulSoup(dat.text, 'lxml')
-            #print(soupp)
 
             driver = webdriver.Chrome(r"C:\Users\lsama\Desktop\ushemi\chromedriver_win32\chromedriver")
             driver.get(url_page)
@@ -189,8 +172,6 @@ class maker:
                 trying = tag.text
                 som = str(trying)
                 som2 = som.splitlines()
-                #trying = os.linesep.join([s for s in trying.splitlines() if s])
-                #print(som2)
                 y = [s for s in som2 if len(s) > 5]
                 dati_temp_one = []
                 print (y)
@@ -306,17 +287,6 @@ class maker:
                 print(split_three)
 
 
-
-                #print(sega)
-                print("SPACE")
-
-            #
-            #
-            #     #print(tag.text.strip())
-            #     print("space")
-            #    temp_one = tag.text.strip()
-            #    ss = temp_one.split('/')
-
         elif province == "burgas":
             url_page = "https://www.burgas.bg/bg/notice/index/61/0"
             province_name = 'Бургас'
@@ -334,14 +304,8 @@ class maker:
             for tag in temp_one:
                 temp_clean = tag.text.strip()
                 separated = temp_clean.splitlines()
-                # for s in som:
-                #     print(s)
-                #     print("1")
-                #print(som)
-                #print(separated)
+
                 print("space")
-                ## now look for издадено разрешение за строеж
-                #print(separated)
                 if ((substring_two in separated[0]) or (substring_two in separated[2])):
                     print("found")
                     #print(separated)
@@ -376,8 +340,6 @@ class maker:
                     link_split_two = link_split_one[1].split('"><')
                     #print(link_split_two[0])
                     linkove.append(link_split_two[0])
-                    #here work on splitting and getting info
-                    #inside [2] look for date and type obekt
                     try:
 
                         split_one = separated[2].split(substring_two)
@@ -407,79 +369,8 @@ class maker:
 
         #result = self.db_reach.fetch("SELECT title FROM upvotes_db")
 
+## PUT NAME OF CITY INSIDE prov VARIABLE TO CHANGE THE METHOD EXECUTION.
 mak = maker()
 prov = 'burgas'
 mak.get_data(prov)
 
-
-## VARNA
-
-# url = 'https://agup.varna.bg/index.php/registers/2013-04-23-07-00-18/razresheniya-za-stroezh-2020-g-2'
-#
-# r = requests.get(url)
-#
-# soup = BeautifulSoup(r.content, 'html.parser')
-#
-#
-# data = soup.findAll("td", {"class": "ari-tbl-col-0"})
-# #data = soup.select('ari-tbl-col-0')
-# zaglavie = soup.findAll("td",{"class": 'ari-tbl-col-1'})
-# tekst = soup.select('ari-tbl-col-2')
-#
-# print(zaglavie[0])
-
-
-## shumen
-
-# url2 = 'https://www.shumen.bg/ustrojstvo-na-teritoriyata/razresheniya-za-stroezh/'
-#
-# r_two = requests.get(url2)
-# soup_two = BeautifulSoup(r_two.content, 'html.parser')
-# info = soup_two.findAll("div", {"class" : "wpb_wrapper"})
-# print(info)
-
-
-## PLOVDIV
-# url3 = 'https://pd.government.bg/?page_id=9996'
-#
-# r_three = requests.get(url3)
-# html = r_three.text
-# soup_now = BeautifulSoup(html, "html.parser")
-# info_two = soup_now.find("table", {"class": "su-table-loop table"})
-#
-# for q in info_two:
-#     soup2 = BeautifulSoup(str(q), 'html.parser')
-#     text1 = soup2.find_all("td", {"class": "su-post-title"})
-    #text2 = soup2.find("td", {"class": "su-post-excerpt"})
-    #print(text1)
-
-    # res = str(text1)
-    # m = re.search('new_tab">(.+?)</a>', res)
-    # if m:
-    #     found = m.group(1)
-    #     print(found)
-    # m2 = re.search('new_tab">(.+?)</a>', res)
-    # if m2:
-    #     found2 = m2.group(1)
-    #     print(found2)
-    #res2 = res.split('Разрешение за ')
-    #print()
-    # for i in q:
-    #     text1 = soup2.find_all("td", {"class": "su-post-title"})
-    #     text2 = soup2.find("td", {"class": "su-post-excerpt"})
-    #     print(text1)
-    #     print("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
-        #print(text2)
-    #print(text1.text)
-    #print(text2.text)
-
-#soup_three = BeautifulSoup(r_three.content, 'html.parser')
-#info_two = soup_three.findAll("table", {"class": "su-table-loop table"})
-#print(info_two[0])
-
-#for row in info_two.find_all('td'):
-#    res = row.string.strip()
-#    print(res)
-
-#result = info_two.split('РАЗРЕШАВАМ на ')
-##print(result)
